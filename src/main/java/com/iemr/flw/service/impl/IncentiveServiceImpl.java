@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -50,7 +51,7 @@ public class IncentiveServiceImpl implements IncentiveService {
                 incentivesRepo.save(activity);
             });
             StringBuilder saved = new StringBuilder();
-            activityDTOS.forEach(dto -> saved.append(dto.getGroup()).append(": ").append(dto.getName()).append(", "));
+            activityDTOS.forEach(dto -> saved.append(Objects.toString(dto.getGroup(), "")).append(": ").append(Objects.toString(dto.getName(), "")).append(", "));
             // Remove trailing ", " if present
             if (saved.length() > 0) {
                 saved.setLength(saved.length() - 2);
